@@ -1,6 +1,6 @@
 function getRandomInt(min, max) {
   if (min < 0 || max <= 0 || max <= min){
-    return 'Некорректные данные!';
+    return NaN;
   }
   min = Math.ceil(min);
   max = Math.floor(max);
