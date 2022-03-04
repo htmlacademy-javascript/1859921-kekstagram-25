@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 function getRandomInt(min, max) {
@@ -40,7 +41,7 @@ const COMMENTS_TEXT = [
   'Как можно было поймать такой неудачный момент?!'
 ];
 
-const PHOTO_DESCRIPTION = [
+const PHOTO_DESCRIPTIONS = [
   'Неплохо',
   'Идеально',
   'Очень красиво',
@@ -48,16 +49,18 @@ const PHOTO_DESCRIPTION = [
   'Както так'
 ];
 
-const OPTION_NUMBER = 200;
+const PHOTOS_COUNT = 25;
+const MIN_LIKES_COUNT = 15;
+const MAX_LIKES_COUNT = 200;
 
-const COUNT_COMMENTS = 25;
 
-// const getRandomPositiveInteger = (a, b) => {
-//   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-//   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
-//   const result = Math.random() * (upper - lower + 1) + lower;
-//   return Math.floor(result);
-// };
+const getRandomPositiveInteger = (a, b) => {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
+
 
 const getRandomArrayElement = (elements) => {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
@@ -65,23 +68,24 @@ const getRandomArrayElement = (elements) => {
 
 const createCommentsPhoto = () => {
   return {
-    id: getRandomPositiveInteger(1, OPTION_NUMBER),
-    avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
+    id: getRandomPositiveInteger(1, COMMENTS_TEXT.length + 1),
+    avatar: `img/avatar/${getRandomPositiveInteger(1, PHOTO_DESCRIPTIONS.length + 1)}.svg`,
     name: getRandomArrayElement(USER_NAMES),
     message: getRandomArrayElement(COMMENTS_TEXT),
   };
 };
 
-const createPhotosDescription = () => {
+
+const createPhotos = (id) => {
   return {
-    id: id,
-    url: `photos/${getRandomPositiveInteger(1, OPTION_NUMBER)}.jpg`,
-    description: getRandomArrayElement(PHOTO_DESCRIPTION),
-    likes: getRandomPositiveInteger(15, 200),
-    comments: getRandomArrayElement(createCommentsPhoto),
+    id,
+    url: `photos/${id}.jpg`,
+    description: getRandomArrayElement(PHOTO_DESCRIPTIONS),
+    likes: getRandomPositiveInteger(MIN_LIKES_COUNT, MAX_LIKES_COUNT),
+    comments: Array.from({length: getRandomPositiveInteger(1, COMMENTS_TEXT.length)}, createCommentsPhoto),
   };
 };
 
-const randomСomments = Array.from({length: COUNT_COMMENTS}, createCommentsPhoto);
+const randomСomments = Array.from({length: PHOTOS_COUNT}, (elem, index) => createPhotos(index+1));
 
 console.log(randomСomments);
