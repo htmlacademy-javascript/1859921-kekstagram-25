@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+import {getRandomArrayElement} from './util';
 
 const USER_NAMES = [
   'Бриджит',
@@ -31,25 +33,22 @@ const PHOTOS_COUNT = 25;
 const MIN_LIKES_COUNT = 15;
 const MAX_LIKES_COUNT = 200;
 
-const getRandomPositiveInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
+const createCommentPhoto = (id) => ({
+  id,
+  avatar: `img/avatar/${getRandomPositiveInteger(1, 6)}.svg`,
+  name: getRandomArrayElement(USER_NAMES),
+  message: getRandomArrayElement(COMMENTS_TEXT),
+});
 
+const createPhoto = (id) => ({
+  id,
+  url: `photos/${id}.jpg`,    description: getRandomArrayElement(PHOTO_DESCRIPTIONS),
+  likes: getRandomPositiveInteger(MIN_LIKES_COUNT, MAX_LIKES_COUNT),
+  comments: Array.from({length: getRandomPositiveInteger(1, COMMENTS_TEXT.length)}, (elem, index) => createCommentPhoto(index+1)),
+});
 
-// eslint-disable-next-line arrow-body-style
-const getRandomArrayElement = (elements) => {
-  return elements[getRandomPositiveInteger(0, elements.length - 1)];
-};
+const randomUserPhotos = Array.from({length: PHOTOS_COUNT}, (elem, index) => createPhoto(index+1));
 
 export {
-  USER_NAMES,
-  COMMENTS_TEXT,
-  PHOTO_DESCRIPTIONS,
-  PHOTOS_COUNT,
-  MIN_LIKES_COUNT,
-  MAX_LIKES_COUNT,
-  getRandomArrayElement,
+  randomUserPhotos,
 };
