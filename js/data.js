@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import {getRandomArrayElement} from './util';
+import {getRandomArrayElement, getRandomPositiveInteger} from './util.js';
 
 const USER_NAMES = [
   'Бриджит',

@@ -12,4 +12,5 @@ const getRandomArrayElement = (elements) => {
 
 export {
   getRandomArrayElement,
+  getRandomPositiveInteger,
 };
