@@ -5,10 +5,10 @@ const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const renderMiniatures = (thumbnailPhoto) => {
+const renderMiniatures = (thumbnailPhotos) => {
   const picturesThumbnailFragment = document.createDocumentFragment();
 
-  thumbnailPhoto.forEach(({url, likes, comments}) => {
+  thumbnailPhotos.forEach(({url, likes, comments}) => {
     const pictureElement = pictureTemplate.cloneNode(true);
     pictureElement.querySelector('.picture__img').src = url;
     pictureElement.querySelector('.picture__likes').textContent = likes;
