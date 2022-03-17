@@ -1,4 +1,5 @@
-/* eslint-disable no-console */
 import {randomUserPhotos} from './data.js';
+import {renderMiniatures} from './thumbnail-rendering.js';
 
-console.log(randomUserPhotos);
+// eslint-disable-next-line eol-last
+renderMiniatures(randomUserPhotos);
