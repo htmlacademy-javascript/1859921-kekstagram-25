@@ -1,3 +1,5 @@
+import {showBigPicture} from './popup.js';
+
 const picturesList = document.querySelector('.pictures');
 picturesList.querySelector('.pictures__title').classList.remove('visually-hidden');
 
@@ -14,6 +16,7 @@ const renderMiniatures = (thumbnailPhotos) => {
     pictureElement.querySelector('.picture__likes').textContent = likes;
     pictureElement.querySelector('.picture__comments').textContent = comments.length;
     picturesThumbnailFragment.appendChild(pictureElement);
+    pictureElement.addEventListener('click', () => showBigPicture(thumbnailPhotos));
   });
 
   picturesList.appendChild(picturesThumbnailFragment);
