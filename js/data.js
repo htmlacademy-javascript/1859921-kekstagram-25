@@ -35,7 +35,7 @@ const MAX_LIKES_COUNT = 200;
 
 const createCommentPhoto = (id) => ({
   id,
-  avatar: `img/avatar/${getRandomPositiveInteger(1, 6)}.svg`,
+  avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
   name: getRandomArrayElement(USER_NAMES),
   message: getRandomArrayElement(COMMENTS_TEXT),
 });

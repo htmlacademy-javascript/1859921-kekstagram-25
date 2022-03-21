@@ -16,7 +16,7 @@ const renderMiniatures = (thumbnailPhotos) => {
     pictureElement.querySelector('.picture__likes').textContent = likes;
     pictureElement.querySelector('.picture__comments').textContent = comments.length;
     picturesThumbnailFragment.appendChild(pictureElement);
-    pictureElement.addEventListener('click', () => showBigPicture(thumbnailPhotos));
+    showBigPicture(thumbnailPhotos);
   });
 
   picturesList.appendChild(picturesThumbnailFragment);
