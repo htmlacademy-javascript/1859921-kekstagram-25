@@ -1,5 +1,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-vars */
+import {isEscapeKey} from './popup';
+
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
 const socialComments = document.querySelector('.social__comments');
@@ -13,7 +15,7 @@ const onButtonModalClose = () => {
 };
 
 const onEscapePress = (evt) => {
-  if (evt.key === 'Escape') {
+  if (isEscapeKey(evt)) {
     evt.preventDefault();
     onButtonModalClose();
   }
