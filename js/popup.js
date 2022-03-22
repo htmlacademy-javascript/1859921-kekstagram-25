@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-vars */
-import {isEscapeKey} from './popup';
+import {isEscapeKey} from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
@@ -52,7 +52,7 @@ const showBigPicture = (photo) => {
 
   socialComments.appendChild(fragment);
 
-  document.addEventListener('keypress', onEscapePress);
+  document.addEventListener('keydown', onEscapePress);
 
   bigPictureCancel.addEventListener('click', onButtonModalClose);
 };
