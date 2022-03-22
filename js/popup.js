@@ -5,12 +5,12 @@ const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
 const socialComments = document.querySelector('.social__comments');
 const fragment = document.createDocumentFragment();
 
-function onButtonModalClose() {
+const onButtonModalClose = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keyup', onEscapePress);
   bigPictureCancel.removeEventListener('click', onButtonModalClose);
-}
+};
 
 const onEscapePress = (evt) => {
   if (evt.key === 'Escape') {
@@ -19,7 +19,7 @@ const onEscapePress = (evt) => {
   }
 };
 
-function showBigPicture(photo) {
+const showBigPicture = (photo) => {
   document.body.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
   bigPicture.querySelector('.big-picture__img img').src = photo.url;
@@ -53,4 +53,7 @@ function showBigPicture(photo) {
   document.addEventListener('keypress', onEscapePress);
 
   bigPictureCancel.addEventListener('click', onButtonModalClose);
-}
+};
+
+// eslint-disable-next-line eol-last
+export {showBigPicture};

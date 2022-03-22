@@ -16,7 +16,8 @@ const renderMiniatures = (thumbnailPhotos) => {
     pictureElement.querySelector('.picture__likes').textContent = likes;
     pictureElement.querySelector('.picture__comments').textContent = comments.length;
     picturesThumbnailFragment.appendChild(pictureElement);
-    showBigPicture(thumbnailPhotos);
+    // eslint-disable-next-line no-undef
+    showBigPicture(thumbnailPhoto);
   });
 
   picturesList.appendChild(picturesThumbnailFragment);
