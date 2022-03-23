@@ -1,5 +1,5 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-vars */
 import {isEscapeKey} from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
@@ -22,8 +22,8 @@ const onEscapePress = (evt) => {
 };
 
 const showBigPicture = (photo) => {
-  document.body.classList.add('modal-open');
-  bigPicture.classList.remove('hidden');
+  document.body.classList.remove('modal-open');
+  bigPicture.classList.add('hidden');
   bigPicture.querySelector('.big-picture__img img').src = photo.url;
   bigPicture.querySelector('.likes-count').textContent = photo.likes;
   bigPicture.querySelector('.comments-count').textContent = photo.comments.length;
@@ -55,6 +55,7 @@ const showBigPicture = (photo) => {
   document.addEventListener('keydown', onEscapePress);
 
   bigPictureCancel.addEventListener('click', onButtonModalClose);
+
 };
 
 // eslint-disable-next-line eol-last
