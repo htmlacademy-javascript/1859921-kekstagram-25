@@ -22,8 +22,8 @@ const onEscapePress = (evt) => {
 };
 
 const showBigPicture = (photo) => {
-  document.body.classList.remove('modal-open');
-  bigPicture.classList.add('hidden');
+  document.body.classList.add('modal-open');
+  bigPicture.classList.remove('hidden');
   bigPicture.querySelector('.big-picture__img img').src = photo.url;
   bigPicture.querySelector('.likes-count').textContent = photo.likes;
   bigPicture.querySelector('.comments-count').textContent = photo.comments.length;
