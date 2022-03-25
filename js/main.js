@@ -1,5 +1,5 @@
 import {randomUserPhotos} from './data.js';
 import {renderMiniatures} from './thumbnail-rendering.js';
+import {showBigPicture} from './popup.js';
 
-// eslint-disable-next-line eol-last
-renderMiniatures(randomUserPhotos);
+renderMiniatures(randomUserPhotos, showBigPicture);
