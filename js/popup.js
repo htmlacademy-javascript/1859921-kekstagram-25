@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
 import {isEscapeKey} from './util.js';
 
@@ -9,7 +10,7 @@ const pageBody = document.querySelector('body');
 
 const onButtonModalClose = () => {
   bigPicture.classList.add('hidden');
-  pageBody.classList.remove('modal-open');
+  document.body.classList.remove('modal-open');
   document.removeEventListener('keyup', onEscapePress);
   bigPictureCancel.removeEventListener('click', onButtonModalClose);
 };
@@ -22,7 +23,7 @@ const onEscapePress = (evt) => {
 };
 
 const showBigPicture = (photo) => {
-  pageBody.classList.add('modal-open');
+  document.body.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
   bigPicture.querySelector('.big-picture__img img').src = photo.url;
   bigPicture.querySelector('.likes-count').textContent = photo.likes;
@@ -58,4 +59,5 @@ const showBigPicture = (photo) => {
 
 };
 
+// eslint-disable-next-line eol-last
 export {showBigPicture, pageBody};
