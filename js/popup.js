@@ -77,4 +77,5 @@ const onLoadButtonClick = () => {
 // eslint-disable-next-line eol-last
 export {showBigPicture, pageBody};
 
-//Почему не работает ограничение комментариев?//
+//Почему не работает ограничение комментариев? нужно вынести комментарии в переменную?
+
