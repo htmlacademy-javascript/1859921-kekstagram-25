@@ -52,17 +52,17 @@ const pristine = new Pristine(formUpload, {
   errorTextClass: 'img-upload__text-error'
 }, true);
 
-const getHashtagsArrays = (string) => string.split(' ').map((item) => item.toLowerCase());
+const getLowercaseStrings = (string) => string.split(' ').map((item) => item.toLowerCase());
 
-const checkHashtagWriting = (array) => array.every((item) => RE.test(item));
+const checkHashtagWriting = (hashTags) => hashTags.every((item) => RE.test(item));
 
-const checkHashtagRepeat = (array) => array.every((item) => array.indexOf(item) === array.lastIndexOf(item));
+const checkHashtagRepeat = (hashTags) => hashTags.every((item) => hashTags.indexOf(item) === hashTags.lastIndexOf(item));
 
-const checkArrayLength = (array) => array.length <= MAX_HASHTAGS;
+const checkArrayLength = (hashTags) => hashTags.length <= MAX_HASHTAGS;
 
 const validateHashtags = (stringValue) => {
-  const defineArray = getHashtagsArrays(stringValue);
-  return checkHashtagWriting(defineArray) && checkHashtagRepeat(defineArray) && checkArrayLength(defineArray);
+  const hashtagValues = getLowercaseStrings(stringValue);
+  return checkHashtagWriting(hashtagValues) && checkHashtagRepeat(hashtagValues) && checkArrayLength(hashtagValues);
 };
 
 pristine.addValidator(hashtagInput,
