@@ -10,7 +10,7 @@ const pageBody = document.querySelector('body');
 
 const onButtonModalClose = () => {
   bigPicture.classList.add('hidden');
-  document.body.classList.remove('modal-open');
+  pageBody.classList.remove('modal-open');
   document.removeEventListener('keyup', onEscapePress);
   bigPictureCancel.removeEventListener('click', onButtonModalClose);
 };
@@ -23,7 +23,7 @@ const onEscapePress = (evt) => {
 };
 
 const showBigPicture = (photo) => {
-  document.body.classList.add('modal-open');
+  pageBody.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
   bigPicture.querySelector('.big-picture__img img').src = photo.url;
   bigPicture.querySelector('.likes-count').textContent = photo.likes;
