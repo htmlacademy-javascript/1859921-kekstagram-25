@@ -2,17 +2,23 @@
 /* eslint-disable no-use-before-define */
 import {isEscapeKey} from './util.js';
 
+const COMMENTS_LIMIT = 5;
+let commentsArray = [];
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
 const socialComments = document.querySelector('.social__comments');
 const fragment = document.createDocumentFragment();
 const pageBody = document.querySelector('body');
 
+const commentsLoaderButton = bigPicture.querySelector('.social__comments-loader');
+
 const onButtonModalClose = () => {
   bigPicture.classList.add('hidden');
   pageBody.classList.remove('modal-open');
   document.removeEventListener('keyup', onEscapePress);
   bigPictureCancel.removeEventListener('click', onButtonModalClose);
+  commentsArray = [];
+  commentsLoaderButton.removeEventListener('click', onLoadButtonClick);
 };
 
 const onEscapePress = (evt) => {
@@ -59,5 +65,16 @@ const showBigPicture = (photo) => {
 
 };
 
+const onLoadButtonClick = () => {
+  if (commentsArray.length <= COMMENTS_LIMIT) {
+    commentsLoaderButton.classList.add('hidden');
+  }
+  commentItem(commentsArray.splice(0, COMMENTS_LIMIT));
+  const commentsCount = document.querySelectorAll('.social__comment');
+  commentsShownCount.textContent = commentsCount.length;
+};
+
 // eslint-disable-next-line eol-last
 export {showBigPicture, pageBody};
+
+//Почему не работает ограничение комментариев?//
