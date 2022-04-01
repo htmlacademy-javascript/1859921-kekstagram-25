@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
 import {isEscapeKey} from './util.js';
+// import {scaleControlsFieldset, onScaleControlsClick} from './scale.js';
+// import {effectsList, onEffectsListClick} from './filter.js';
 
 // const COMMENTS_LIMIT = 5;
 // let commentsArray = [];
@@ -17,8 +19,7 @@ const onButtonModalClose = () => {
   pageBody.classList.remove('modal-open');
   document.removeEventListener('keyup', onEscapePress);
   bigPictureCancel.removeEventListener('click', onButtonModalClose);
-  // commentsArray = [];
-  // commentsLoaderButton.removeEventListener('click', onLoadButtonClick);
+  // scaleControlsFieldset.removeEventListener('click', onScaleControlsClick);
 };
 
 const onEscapePress = (evt) => {
@@ -63,6 +64,8 @@ const showBigPicture = (photo) => {
 
   bigPictureCancel.addEventListener('click', onButtonModalClose);
 
+  // scaleControlsFieldset.addEventListener('click', onScaleControlsClick);
+  // effectsList.addEventListener('change', onEffectsListClick);
 };
 
 // const onLoadButtonClick = () => {
