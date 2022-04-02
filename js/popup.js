@@ -4,21 +4,36 @@ import {isEscapeKey} from './util.js';
 // import {scaleControlsFieldset, onScaleControlsClick} from './scale.js';
 // import {effectsList, onEffectsListClick} from './filter.js';
 
-// const COMMENTS_LIMIT = 5;
-// let commentsArray = [];
+let commentsArray = [];
+let commentsArrayFull = [];
+const COMMENTS_LIMIT = 5;
+
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
 const socialComments = document.querySelector('.social__comments');
 const fragment = document.createDocumentFragment();
 const pageBody = document.querySelector('body');
+const commentsShownCount = document.querySelector('.comments-show');
 
-// const commentsLoaderButton = bigPicture.querySelector('.social__comments-loader');
+const commentsLoaderButton = bigPicture.querySelector('.social__comments-loader');
+
+const onLoadButtonClick = () => {
+  if (commentsArray.length <= COMMENTS_LIMIT) {
+    commentsLoaderButton.classList.add('hidden');
+  }
+  commentItem(commentsArray.slice(0, COMMENTS_LIMIT));
+  const commentsCount = document.querySelectorAll('.social__comment');
+  commentsShownCount.textContent = commentsCount.length;
+};
+
 
 const onButtonModalClose = () => {
   bigPicture.classList.add('hidden');
   pageBody.classList.remove('modal-open');
   document.removeEventListener('keyup', onEscapePress);
   bigPictureCancel.removeEventListener('click', onButtonModalClose);
+  commentsArray = [];
+  commentsLoaderButton.removeEventListener('click', onLoadButtonClick);
   // scaleControlsFieldset.removeEventListener('click', onScaleControlsClick);
 };
 
@@ -40,6 +55,11 @@ const showBigPicture = (photo) => {
   bigPicture.querySelector('.social__comment-count').classList.add('hidden');
 
   socialComments.innerHTML = '';
+  commentsArray = photo.comments.slice();
+  commentsArrayFull = commentsArray.slice(0, COMMENTS_LIMIT);
+  commentsShownCount.textContent = commentsArrayFull.length;
+  // commentItem(commentsArrayFull);  //  ??хочу выводить комментарии только с 1 по лимит (5). или это нужно объявить ниже?
+
 
   photo.comments.forEach((comment) => {
     const commentItem = document.createElement('li');
@@ -64,21 +84,17 @@ const showBigPicture = (photo) => {
 
   bigPictureCancel.addEventListener('click', onButtonModalClose);
 
+  if (item.comments.length <= COMMENTS_LIMIT) {
+    commentsLoaderButton.classList.add('hidden');
+    commentsLoaderButton.removeEventListener('click', onLoadButtonClick);
+  } else {
+    commentsLoaderButton.classList.remove('hidden');
+    commentsLoaderButton.addEventListener('click', onLoadButtonClick);
+  }
+
   // scaleControlsFieldset.addEventListener('click', onScaleControlsClick);
   // effectsList.addEventListener('change', onEffectsListClick);
 };
 
-// const onLoadButtonClick = () => {
-//   if (commentsArray.length <= COMMENTS_LIMIT) {
-//     commentsLoaderButton.classList.add('hidden');
-//   }
-//   commentItem(commentsArray.splice(0, COMMENTS_LIMIT));
-//   const commentsCount = document.querySelectorAll('.social__comment');
-//   commentsShownCount.textContent = commentsCount.length;
-// };
-
 // eslint-disable-next-line eol-last
 export {showBigPicture, pageBody, bigPicture};
-
-//Почему не работает ограничение комментариев? нужно вынести комментарии в переменную?
-
