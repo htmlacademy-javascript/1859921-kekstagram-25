@@ -1,11 +1,8 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
 import {isEscapeKey} from './util.js';
-// import {scaleControlsFieldset, onScaleControlsClick} from './scale.js';
-// import {effectsList, onEffectsListClick} from './filter.js';
 
-let commentsArray = [];
-let commentsArrayFull = [];
 const COMMENTS_LIMIT = 5;
 
 const bigPicture = document.querySelector('.big-picture');
@@ -17,24 +14,11 @@ const commentsShownCount = document.querySelector('.comments-show');
 
 const commentsLoaderButton = bigPicture.querySelector('.social__comments-loader');
 
+// eslint-disable-next-line no-unused-vars
 const onLoadButtonClick = () => {
   if (commentsArray.length <= COMMENTS_LIMIT) {
     commentsLoaderButton.classList.add('hidden');
   }
-  commentItem(commentsArray.slice(0, COMMENTS_LIMIT));
-  const commentsCount = document.querySelectorAll('.social__comment');
-  commentsShownCount.textContent = commentsCount.length;
-};
-
-
-const onButtonModalClose = () => {
-  bigPicture.classList.add('hidden');
-  pageBody.classList.remove('modal-open');
-  document.removeEventListener('keyup', onEscapePress);
-  bigPictureCancel.removeEventListener('click', onButtonModalClose);
-  commentsArray = [];
-  commentsLoaderButton.removeEventListener('click', onLoadButtonClick);
-  // scaleControlsFieldset.removeEventListener('click', onScaleControlsClick);
 };
 
 const onEscapePress = (evt) => {
@@ -45,6 +29,25 @@ const onEscapePress = (evt) => {
 };
 
 const showBigPicture = (photo) => {
+  let commetsToShow = COMMENTS_LIMIT;
+
+  const onLoadButtonClick = () => {
+    commetsToShow += COMMENTS_LIMIT;
+    renderComments(socialComments, photo.comments.slice(0, commetsToShow));
+    if (photo.comments.length <= commetsToShow) {
+      commentsLoaderButton.classList.add('hidden');
+      commentsLoaderButton.removeEventListener('click', onLoadButtonClick);
+    }
+  };
+  const onButtonModalClose = () => {
+    bigPicture.classList.add('hidden');
+    pageBody.classList.remove('modal-open');
+    document.removeEventListener('keyup', onEscapePress);
+    bigPictureCancel.removeEventListener('click', onButtonModalClose);
+    commentsLoaderButton.removeEventListener('click', onLoadButtonClick);
+  };
+
+
   pageBody.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
   bigPicture.querySelector('.big-picture__img img').src = photo.url;
@@ -55,10 +58,8 @@ const showBigPicture = (photo) => {
   bigPicture.querySelector('.social__comment-count').classList.add('hidden');
 
   socialComments.innerHTML = '';
-  commentsArray = photo.comments.slice();
-  commentsArrayFull = commentsArray.slice(0, COMMENTS_LIMIT);
-  commentsShownCount.textContent = commentsArrayFull.length;
-  // commentItem(commentsArrayFull);  //  ??хочу выводить комментарии только с 1 по лимит (5). или это нужно объявить ниже?
+
+  commentsShownCount.textContent = photo.comments.length;
 
 
   photo.comments.forEach((comment) => {
@@ -84,17 +85,10 @@ const showBigPicture = (photo) => {
 
   bigPictureCancel.addEventListener('click', onButtonModalClose);
 
-  if (item.comments.length <= COMMENTS_LIMIT) {
-    commentsLoaderButton.classList.add('hidden');
-    commentsLoaderButton.removeEventListener('click', onLoadButtonClick);
-  } else {
+  if (photo.comments.length > COMMENTS_LIMIT) {
     commentsLoaderButton.classList.remove('hidden');
     commentsLoaderButton.addEventListener('click', onLoadButtonClick);
   }
-
-  // scaleControlsFieldset.addEventListener('click', onScaleControlsClick);
-  // effectsList.addEventListener('change', onEffectsListClick);
 };
 
-// eslint-disable-next-line eol-last
-export {showBigPicture, pageBody, bigPicture};
+export {showBigPicture, pageBody, bigPicture,};
