@@ -66,6 +66,7 @@ const showBigPicture = (photo) => {
     }
 
     socialComments.appendChild(fragment);
+    commentsShownCount.textContent = commentsToShow;
   };
 
   pageBody.classList.add('modal-open');
