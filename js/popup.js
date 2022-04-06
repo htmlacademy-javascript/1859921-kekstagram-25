@@ -76,8 +76,6 @@ const showBigPicture = (photo) => {
   bigPicture.querySelector('.comments-count').textContent = photo.comments.length;
   bigPicture.querySelector('.social__caption').textContent = photo.description;
   bigPicture.querySelector('.comments-loader').classList.add('hidden');
-  bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-  commentsShownCount.textContent = photo.comments.length;
 
   renderComments();
 
