@@ -22,12 +22,15 @@ const onEscapePress = (evt) => {
 };
 
 const showBigPicture = (photo) => {
-  let commetsToShow = COMMENTS_LIMIT;
+  let commentsToShow = photo.comments.length > COMMENTS_LIMIT ? COMMENTS_LIMIT : photo.comments.length;
 
   const onLoadButtonClick = () => {
-    commetsToShow += COMMENTS_LIMIT;
-    renderComments(socialComments, photo.comments.slice(0, commetsToShow));
-    if (photo.comments.length <= commetsToShow) {
+    commentsToShow += COMMENTS_LIMIT;
+    if(commentsToShow > photo.comments.length) {
+      commentsToShow = photo.comments.length;
+    }
+    renderComments(socialComments, photo.comments.slice(0, commentsToShow));
+    if (photo.comments.length <= commentsToShow) {
       commentsLoaderButton.classList.add('hidden');
       commentsLoaderButton.removeEventListener('click', onLoadButtonClick);
     }
@@ -44,7 +47,8 @@ const showBigPicture = (photo) => {
   const renderComments = () => {
     socialComments.innerHTML = '';
 
-    photo.comments.forEach((comment) => {
+    for(let i = 0; i < commentsToShow; i++) {
+      const comment = photo.comments[i];
       const commentItem = document.createElement('li');
       commentItem.classList.add('social__comment');
       const commentImg = document.createElement('img');
@@ -59,7 +63,7 @@ const showBigPicture = (photo) => {
       commentText.classList.add('social__text');
       commentText.textContent = comment.message;
       fragment.appendChild(commentItem);
-    });
+    }
 
     socialComments.appendChild(fragment);
   };
@@ -74,7 +78,7 @@ const showBigPicture = (photo) => {
   bigPicture.querySelector('.social__comment-count').classList.add('hidden');
   commentsShownCount.textContent = photo.comments.length;
 
-  renderComments(socialComments, photo.comments.slice(0, commetsToShow));
+  renderComments();
 
   document.addEventListener('keydown', onEscapePress);
 
