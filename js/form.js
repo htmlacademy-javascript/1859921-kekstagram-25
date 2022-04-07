@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import {pageBody} from './popup.js';
 import {isEscapeKey} from './util.js';
+import {activateScaleControls, desactivateScaleControls, resetScale, onEffectButtonClick, setOriginalEffect} from './scale.js';
 
 const RE = /^#[A-Za-zА-Яа-яЕё0-9]{1,19}$/;
 const MAX_HASHTAGS = 5;
@@ -15,12 +16,16 @@ const cancelButton = formUpload.querySelector('#upload-cancel');
 const commentInput = formUpload.querySelector('.text__description');
 const hashtagInput = formUpload.querySelector('.text__hashtags');
 
+const effectList = formUpload.querySelector('.effects__list');
+
 const closeUploadForm = () => {
   pageBody.classList.remove('modal-open');
   photoEditing.classList.add('hidden');
   commentInput.value = '';
   hashtagInput.value = '';
   photoUpload.value = '';
+  effectList.removeEventListener('change', onEffectButtonClick);
+  desactivateScaleControls();
 };
 
 const onUploadEscapeKeydown = (evt) => {
@@ -35,6 +40,10 @@ const openUploadForm = () => {
   pageBody.classList.add('modal-open');
   photoEditing.classList.remove('hidden');
   document.addEventListener('keydown', onUploadEscapeKeydown);
+  effectList.addEventListener('change', onEffectButtonClick);
+  resetScale();
+  setOriginalEffect();
+  activateScaleControls();
 };
 
 photoUpload.addEventListener('change', () => {
