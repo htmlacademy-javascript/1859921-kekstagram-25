@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import {showBigPicture} from './popup.js';
 
 const picturesList = document.querySelector('.pictures');
@@ -20,7 +21,6 @@ const renderMiniatures = (thumbnailPhotos) => {
     pictureElement.addEventListener('click', () => showBigPicture(thumbnailPhoto));
 
   });
-
   picturesList.appendChild(picturesThumbnailFragment);
 };
 
