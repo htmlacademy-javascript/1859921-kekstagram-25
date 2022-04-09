@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import {pageBody} from './popup.js';
 import {isEscapeKey} from './util.js';
-import {activateScaleControls, desactivateScaleControls, resetScale, onEffectButtonClick, setOriginalEffect} from './scale.js';
+import { activateScaleControls, desactivateScaleControls, resetScale, onEffectButtonClick, setOriginalEffect } from './scale.js';
 
 const RE = /^#[A-Za-zА-Яа-яЕё0-9]{1,19}$/;
 const MAX_HASHTAGS = 5;
@@ -16,7 +16,7 @@ const cancelButton = formUpload.querySelector('#upload-cancel');
 const commentInput = formUpload.querySelector('.text__description');
 const hashtagInput = formUpload.querySelector('.text__hashtags');
 
-const effectList = formUpload.querySelector('.effects__list');
+const effectList = document.querySelector('.effects__list');
 
 const closeUploadForm = () => {
   pageBody.classList.remove('modal-open');
