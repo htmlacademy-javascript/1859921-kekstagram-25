@@ -1,5 +1,5 @@
 import {isEscapeKey} from './util.js';
-import {closeUploadForm} from './form';
+import {closeUploadForm} from './form.js';
 
 const bodyTagElement = document.querySelector('body');
 const formElement = document.querySelector('.img-upload__form');

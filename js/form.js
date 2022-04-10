@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-console */
 import {pageBody} from './popup.js';
 import {isEscapeKey} from './util.js';
 import { activateScaleControls, desactivateScaleControls, resetScale, onEffectButtonClick, setOriginalEffect } from './scale.js';
@@ -99,7 +97,7 @@ const setUserFormSubmit = (onSuccess) => {
 
     const isValid = pristine.validate();
     if (isValid) {
-      hashtagElement.style.background = '';
+      hashtagInput.style.background = '';
 
       const formData = new FormData(evt.target);
       sendData (
@@ -108,9 +106,9 @@ const setUserFormSubmit = (onSuccess) => {
         formData
       );
     } else {
-      hashtagInput.style.background = 'pink';
+      hashtagInput.style.background = 'red';
     }
   });
 };
 
-export {setUserFormSubmit};
+export {setUserFormSubmit, closeUploadForm};
