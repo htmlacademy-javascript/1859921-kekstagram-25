@@ -71,6 +71,9 @@ const checkHashtagRepeat = (hashTags) => hashTags.every((item) => hashTags.index
 const checkArrayLength = (hashTags) => hashTags.length <= MAX_HASHTAGS;
 
 const validateHashtags = (stringValue) => {
+  if (!stringValue) {
+    return true;
+  }
   const hashtagValues = getLowercaseStrings(stringValue);
   return checkHashtagWriting(hashtagValues) && checkHashtagRepeat(hashtagValues) && checkArrayLength(hashtagValues);
 };

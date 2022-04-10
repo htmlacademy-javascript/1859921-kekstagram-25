@@ -66,6 +66,7 @@ const showsErrorMessage = () => {
   documentFragment.appendChild(messageOnError);
   bodyTagElement.appendChild(documentFragment);
   bodyTagElement.classList.add('modal-open');
+  formElement.reset();
   closeUploadForm();
 
   document.addEventListener ('click', (event) => {
