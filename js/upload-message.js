@@ -4,8 +4,6 @@ import {closeUploadForm} from './form.js';
 const bodyTagElement = document.querySelector('body');
 const formElement = document.querySelector('.img-upload__form');
 
-// Шаблоны сообщений об отправке
-
 const onSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
 const onErrorTemplate = document.querySelector('#error').content.querySelector('.error');
 const uploadMessageTemplate = document.querySelector('#messages').content.querySelector('.img-upload__message');
@@ -35,8 +33,6 @@ const onEscKeydown = (evt) => {
     deleteErrorMessage();
   }
 };
-
-// Функции сообщений об отправке
 
 const showsSuccessMessage = () => {
 
@@ -81,7 +77,6 @@ const showsErrorMessage = () => {
 
   document.addEventListener('keydown', onEscKeydown);
 };
-
 
 const showsUploadMessage = () => {
 
