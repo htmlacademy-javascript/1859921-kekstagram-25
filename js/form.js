@@ -1,8 +1,8 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-console */
 import {pageBody} from './popup.js';
 import {isEscapeKey} from './util.js';
 import { activateScaleControls, desactivateScaleControls, resetScale, onEffectButtonClick, setOriginalEffect } from './scale.js';
+import {showsErrorMessage} from './upload-message.js';
+import {sendData} from './api.js';
 
 const RE = /^#[A-Za-zА-Яа-яЕё0-9]{1,19}$/;
 const MAX_HASHTAGS = 5;
@@ -17,6 +17,7 @@ const commentInput = formUpload.querySelector('.text__description');
 const hashtagInput = formUpload.querySelector('.text__hashtags');
 
 const effectList = document.querySelector('.effects__list');
+
 
 const closeUploadForm = () => {
   pageBody.classList.remove('modal-open');
@@ -70,6 +71,9 @@ const checkHashtagRepeat = (hashTags) => hashTags.every((item) => hashTags.index
 const checkArrayLength = (hashTags) => hashTags.length <= MAX_HASHTAGS;
 
 const validateHashtags = (stringValue) => {
+  if (!stringValue) {
+    return true;
+  }
   const hashtagValues = getLowercaseStrings(stringValue);
   return checkHashtagWriting(hashtagValues) && checkHashtagRepeat(hashtagValues) && checkArrayLength(hashtagValues);
 };
@@ -89,3 +93,25 @@ formUpload.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
 });
+
+const setUserFormSubmit = (onSuccess) => {
+  formUpload.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      hashtagInput.style.background = '';
+
+      const formData = new FormData(evt.target);
+      sendData (
+        () => onSuccess(),
+        () => showsErrorMessage(),
+        formData
+      );
+    } else {
+      hashtagInput.style.background = 'red';
+    }
+  });
+};
+
+export {setUserFormSubmit, closeUploadForm};

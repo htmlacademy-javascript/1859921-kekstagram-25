@@ -24,5 +24,4 @@ const renderMiniatures = (thumbnailPhotos) => {
   picturesList.appendChild(picturesThumbnailFragment);
 };
 
-// eslint-disable-next-line eol-last
 export {renderMiniatures};
