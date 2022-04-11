@@ -22,7 +22,4 @@ getData((photos) => {
 }, showAlert);
 setUserFormSubmit();
 
-getData ((photos) => {
-  renderMiniatures(photos);
-});
 setUserFormSubmit (showsSuccessMessage);
