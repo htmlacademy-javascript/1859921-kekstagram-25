@@ -3,6 +3,7 @@ import {isEscapeKey} from './util.js';
 import { activateScaleControls, desactivateScaleControls, resetScale, onEffectButtonClick, setOriginalEffect } from './scale.js';
 import {showsErrorMessage} from './upload-message.js';
 import {sendData} from './api.js';
+import {clearFormPhoto, loadFormPhoto} from './form-photo.js';
 
 const RE = /^#[A-Za-zА-Яа-яЕё0-9]{1,19}$/;
 const MAX_HASHTAGS = 5;
@@ -25,6 +26,7 @@ const closeUploadForm = () => {
   commentInput.value = '';
   hashtagInput.value = '';
   photoUpload.value = '';
+  clearFormPhoto();
   effectList.removeEventListener('change', onEffectButtonClick);
   desactivateScaleControls();
 };
@@ -42,6 +44,7 @@ const openUploadForm = () => {
   photoEditing.classList.remove('hidden');
   document.addEventListener('keydown', onUploadEscapeKeydown);
   effectList.addEventListener('change', onEffectButtonClick);
+  loadFormPhoto();
   resetScale();
   setOriginalEffect();
   activateScaleControls();

@@ -15,8 +15,29 @@ const isEscapeKey = (evt) => {
   return evt.key === 'Escape';
 };
 
-export {
-  getRandomArrayElement,
-  getRandomPositiveInteger,
-  isEscapeKey,
+const showAlert = (message) => {
+  const alertTemplate = document.querySelector('#data-error').content.querySelector('.error');
+  const alertContainer = alertTemplate.cloneNode(true);
+  const alertTextContainer = alertContainer.querySelector('.error__title');
+  const ALERT_SHOW_TIME = 5000;
+
+  alertTextContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
 };
+
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+
+export {getRandomArrayElement, getRandomPositiveInteger, isEscapeKey, showAlert, debounce};
