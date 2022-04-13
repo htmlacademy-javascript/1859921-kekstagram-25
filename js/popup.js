@@ -14,13 +14,6 @@ const commentsShownCount = document.querySelector('.comments-show');
 
 const commentsLoaderButton = bigPicture.querySelector('.social__comments-loader');
 
-const onEscapePress = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    onButtonModalClose();
-  }
-};
-
 const showBigPicture = (photo) => {
   let commentsToShow = photo.comments.length > COMMENTS_LIMIT ? COMMENTS_LIMIT : photo.comments.length;
 
@@ -42,6 +35,13 @@ const showBigPicture = (photo) => {
     document.removeEventListener('keyup', onEscapePress);
     bigPictureCancel.removeEventListener('click', onButtonModalClose);
     commentsLoaderButton.removeEventListener('click', onLoadButtonClick);
+  };
+
+  const onEscapePress = (evt) => {
+    if (isEscapeKey(evt)) {
+      evt.preventDefault();
+      onButtonModalClose();
+    }
   };
 
   const renderComments = () => {

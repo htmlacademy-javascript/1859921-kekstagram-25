@@ -6,11 +6,6 @@ const getRandomPositiveInteger = (a, b) => {
 };
 
 // eslint-disable-next-line arrow-body-style
-const getRandomArrayElement = (elements) => {
-  return elements[getRandomPositiveInteger(0, elements.length - 1)];
-};
-
-// eslint-disable-next-line arrow-body-style
 const isEscapeKey = (evt) => {
   return evt.key === 'Escape';
 };
@@ -40,4 +35,4 @@ const debounce = (callback, timeoutDelay = 500) => {
 };
 
 
-export {getRandomArrayElement, getRandomPositiveInteger, isEscapeKey, showAlert, debounce};
+export {getRandomPositiveInteger, isEscapeKey, showAlert, debounce};

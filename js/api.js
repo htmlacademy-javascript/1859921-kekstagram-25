@@ -30,7 +30,7 @@ const getData = (onSuccsess) => {
       onSuccsess(picture);
     })
     .catch(() => {
-      showAlert('Не удалось загрузить фото.');
+      showAlert('Не удалось загрузить изображения с сервера');
     });
 };
 
