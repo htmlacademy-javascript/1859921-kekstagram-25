@@ -22,7 +22,6 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-
 const getData = (onSuccsess) => {
   fetch('https://25.javascript.pages.academy/kekstagram/data')
     .then((response) => response.json())
