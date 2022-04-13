@@ -20,6 +20,5 @@ getData((photos) => {
     RERENDER_DELAY,
   ));
 }, showAlert);
-setUserFormSubmit();
 
 setUserFormSubmit (showsSuccessMessage);

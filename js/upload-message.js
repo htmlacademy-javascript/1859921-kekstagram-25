@@ -11,7 +11,6 @@ const documentFragment = document.createDocumentFragment();
 let messageOnSuccess = null;
 let messageOnError = null;
 
-
 const deleteMessage = () => {
   if (messageOnSuccess) {
     messageOnSuccess.remove();

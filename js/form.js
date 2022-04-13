@@ -19,7 +19,6 @@ const hashtagInput = formUpload.querySelector('.text__hashtags');
 
 const effectList = document.querySelector('.effects__list');
 
-
 const closeUploadForm = () => {
   pageBody.classList.remove('modal-open');
   photoEditing.classList.add('hidden');

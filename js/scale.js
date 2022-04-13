@@ -41,8 +41,6 @@ const resetScale = () => {
   imgUploadPreview.style.transform = 'scale(1)';
 };
 
-//эффекты
-
 const FILTERS_CONFIG = {
   chrome: {
     options: {
@@ -109,8 +107,6 @@ const FILTERS_CONFIG = {
     unit: '',
   },
 };
-
-//слайдер
 
 noUiSlider.create(sliderElement, {
   range: {
